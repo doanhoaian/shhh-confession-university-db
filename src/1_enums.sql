@@ -6,6 +6,15 @@ create type school_types as enum (
     );
 
 -- Users
+create type user_roles as enum (
+    'admin',
+    'moderator',
+    'school_admin',
+    'teacher',
+    'student',
+    'npc'
+    );
+
 create type user_status as enum (
     'active', -- đang hoạt động
     'pending', -- đang chờ duyệt
@@ -25,24 +34,48 @@ create type banned_reason as enum (
     'other' -- lý do khác
     );
 
--- Confessions
-create type confession_status as enum (
+-- Posts
+create type post_status as enum (
     'active', -- đang hoạt động
     'hidden', -- bị ẩn
     'deleted' -- bị xóa
     );
 
-CREATE TYPE hidden_reason AS ENUM (
+create type post_types as enum (
+    'confession',
+    'class_announcement',
+    'class_document',
+    'advertisement',
+    'poll'
+    );
+
+
+create type permission_type as enum (
+    'school_only',
+    'all',
+    'none'
+    );
+
+create type hidden_reason as enum (
     'report', -- ẩn do quá nhiều report
-    'sensitive', -- ẩn do nội dung nhạy cảm (ML hoặc mod flag)
+    'sensitive', -- ẩn do nội dung nhạy cảm (ml hoặc mod flag)
     'spam', -- ẩn do spam
+    'ml_error', -- ẩn do lỗi học máy
     'other' -- lý do khác
     );
 
-CREATE TYPE deleted_reason AS ENUM (
+create type deleted_reason as enum (
     'user', -- xóa bởi người dùng
     'system', -- xóa tự động bởi hệ thống
     'mod', -- xóa bởi mod/admin
     'violation', -- xóa do vi phạm chính sách
     'other' -- lý do khác
+    );
+
+-- Topics
+create type topic_category as enum (
+    'social', -- Giao lưu, giải trí, tâm sự
+    'academic', -- Học thuật, phát triển bản thân
+    'utility', -- Tiện ích, đời sống hàng ngày
+    'event' -- Sự kiện, thông báo
     );
